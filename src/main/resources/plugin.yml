@@ -8,3 +8,7 @@ commands:
     aliases: [rfly]
     description: Toggles your ability to fly
     usage: /<command>
+  heal:
+    aliases: [rheal]
+    description: Heals you or others
+    usage: /heal [user]

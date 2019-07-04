@@ -7,6 +7,8 @@ import com.royalevolution.royalcommands.utils.Common;
 
 public class RoyalCommands extends JavaPlugin {
 
+	private final static String prefix = "&3&lR&b&loyal&3&lC&b&lommands &8> &r";
+
 	private static RoyalCommands instance;
 
 	@Override
@@ -26,8 +28,8 @@ public class RoyalCommands extends JavaPlugin {
 	public static RoyalCommands getInstance() {
 		return instance;
 	}
+
 	public static String getPrefix() {
-		final String prefix = "&3&lR&b&loyal&3&lC&b&lommands &8> &r";
 		return prefix;
 	}
 

@@ -6,6 +6,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 
 import com.royalevolution.royalcommands.RoyalCommands;
+import com.royalevolution.royalcommands.utils.Common;
 
 public class CommandHeal extends PlayerCommand {
 
@@ -15,11 +16,16 @@ public class CommandHeal extends PlayerCommand {
 
 	@Override
 	protected void run(Player sender, String[] args) {
-		if (!sender.hasPermission("rc.heal"))
+		if (!sender.hasPermission("rc.heal")) {
+			Common.tell(sender, "&4You do not have permission to use this command.");
 			return;
-		else if (args.length == 0) // sender targets their self
+		}
+
+		if (args.length == 0) // sender targets their self
 			sender.setHealth(sender.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
 		else if (args.length == 1) { // sender targets another player
+			if (!sender.hasPermission("rc.heal.others")) return;
+
 			final String playerName = args[0];
 
 			final Collection<? extends Player> onlinePlayers = RoyalCommands.getInstance().getServer().getOnlinePlayers();
