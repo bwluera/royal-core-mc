@@ -4,7 +4,7 @@ package com.royalevolution.royalcommands;
  * Hello world!
  *
  */
-public class App 
+public class RoyalCommands 
 {
     public static void main( String[] args )
     {
