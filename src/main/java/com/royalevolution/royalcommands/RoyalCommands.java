@@ -2,13 +2,16 @@ package com.royalevolution.royalcommands;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.royalevolution.royalcommands.commands.CommandHeal;
+import com.royalevolution.royalcommands.utils.Common;
+
 public class RoyalCommands extends JavaPlugin {
 
 	private static RoyalCommands instance;
 
 	@Override
 	public void onEnable() { // all necessary plugin startup functions go here
-
+		Common.registerCommand(new CommandHeal());
 	}
 
 	@Override
@@ -22,6 +25,10 @@ public class RoyalCommands extends JavaPlugin {
 
 	public static RoyalCommands getInstance() {
 		return instance;
+	}
+	public static String getPrefix() {
+		final String prefix = "&3&lR&b&loyal&3&lC&b&lommands &8> &r";
+		return prefix;
 	}
 
 }
