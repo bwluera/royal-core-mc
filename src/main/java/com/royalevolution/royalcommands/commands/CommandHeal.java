@@ -29,7 +29,11 @@ public class CommandHeal extends PlayerCommand {
 		if (args.length == 0) // sender targets their self
 			sender.setHealth(sender.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
 		else if (args.length == 1) { // sender targets another player
+<<<<<<< HEAD
 			if (sender.hasPermission("rc.heal.others")) {
+=======
+			if (!sender.hasPermission("rc.heal.others")) return;
+>>>>>>> 1cea4c9804b2a806fcdfe39b53e1ee33acb1b328
 
 			final String playerName = args[0];
 
@@ -40,10 +44,13 @@ public class CommandHeal extends PlayerCommand {
 					player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
 					break;
 				}
+<<<<<<< HEAD
 			} else {
 				return;
 				//no perm stuff
 			}
+=======
+>>>>>>> 1cea4c9804b2a806fcdfe39b53e1ee33acb1b328
 
 		}
 
@@ -55,4 +62,8 @@ public class CommandHeal extends PlayerCommand {
 	//	return super.tabComplete(sender, alias, args); // this will simply tab-complete with someone's username, the default
 	//}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1cea4c9804b2a806fcdfe39b53e1ee33acb1b328
