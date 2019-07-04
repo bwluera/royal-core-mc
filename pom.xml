@@ -12,6 +12,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <mainClass>com.royalevolution.royalcommands.RoyalCommands</mainClass>
+    <author>SSND</author>
   </properties>
 
   <dependencies>
