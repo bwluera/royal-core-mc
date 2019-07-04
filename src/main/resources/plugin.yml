@@ -2,9 +2,14 @@ name: RoyalCommands
 main: com.royalevolution.royalcommands.RoyalCommands
 version: 1.0.0
 authors: [einstein8612, ssnd]
-softdepend: [vault]
+softdepend: [Vault]
 commands:
   fly:
     aliases: [rfly]
     description: Toggles your ability to fly
     usage: /<command>
+  feed:
+    aliases: [rfeed, eat]
+    description: Feeds you
+    usage: /<command>
+    
