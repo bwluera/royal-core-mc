@@ -1,0 +1,5 @@
+com\royalevolution\royalcommands\commands\CommandFly.class
+com\royalevolution\royalcommands\commands\CommandHeal.class
+com\royalevolution\royalcommands\commands\PlayerCommand.class
+com\royalevolution\royalcommands\utils\Common.class
+com\royalevolution\royalcommands\RoyalCommands.class

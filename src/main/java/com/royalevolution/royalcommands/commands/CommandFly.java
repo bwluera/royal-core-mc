@@ -19,7 +19,7 @@ public class CommandFly extends PlayerCommand {
 			Common.tell(sender, RoyalCommands.getPrefix() + "Your flight has been &aenabled");
 		} else {
 			sender.setAllowFlight(false);
-			Common.tell(sender, "Your flight has been &cdisabled");
+			Common.tell(sender, RoyalCommands.getPrefix() + "Your flight has been &cdisabled");
 		}
 	}
 
