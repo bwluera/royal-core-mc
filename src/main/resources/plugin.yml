@@ -1,14 +1,5 @@
 name: RoyalCommands
-main: com.royalevolution.royalcommands.RoyalCommands
+main: ${mainClass}
 version: 1.0.0
 authors: [einstein8612, ssnd]
-softdepend: [vault]
-commands:
-  fly:
-    aliases: [rfly]
-    description: Toggles your ability to fly
-    usage: /<command>
-  heal:
-    aliases: [rheal]
-    description: Heals you or others
-    usage: /heal [user]
+softdepend: [Vault]

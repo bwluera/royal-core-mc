@@ -1,5 +1,6 @@
 package com.royalevolution.royalcommands.commands;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.bukkit.attribute.Attribute;
@@ -12,6 +13,10 @@ public class CommandHeal extends PlayerCommand {
 
 	public CommandHeal() {
 		super("heal"); // the command name
+
+		setAliases(Arrays.asList("rheal"));
+		setDescription("Heals you or another player.");
+		setUsage("/heal [user]");
 	}
 
 	@Override

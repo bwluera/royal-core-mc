@@ -10,6 +10,7 @@ import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 
 import com.royalevolution.royalcommands.RoyalCommands;
@@ -25,6 +26,10 @@ public class Common {
 
 	public static void tell(CommandSender sender, String message) {
 		sender.sendMessage(colorize(message));
+	}
+
+	public static boolean invCanFit(Inventory i) {
+		return i.getContents().length < 36;
 	}
 
 	public static void tell(CommandSender sender, String... messages) {
