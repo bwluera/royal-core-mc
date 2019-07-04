@@ -1,0 +1,11 @@
+
+.classpath
+.project
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.m2e.core.prefs
+.settings/org.eclipse.jdt.core.prefs
+target/classes/com/royalevolution/royalcommands/commands/PlayerCommand.class
+target/classes/com/royalevolution/royalcommands/commands/CommandHeal.class
+target/classes/com/royalevolution/royalcommands/RoyalCommands.class
+target/classes/com/royalevolution/royalcommands/utils/Common.class
+target/classes/plugin.yml
