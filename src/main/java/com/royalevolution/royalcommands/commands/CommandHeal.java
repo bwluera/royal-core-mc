@@ -20,32 +20,31 @@ public class CommandHeal extends PlayerCommand {
 	}
 
 	@Override
-	protected void run(Player sender, String[] args) {
-		if (!sender.hasPermission("rc.heal")) {
+	protected void run(Player sender, String[] args) { // TODO: make it so that you can heal for a specific amount?
+		if (!sender.hasPermission("rc.heal")) { // no perms
 			Common.tell(sender, "&4You do not have permission to use this command.");
 			return;
 		}
 
 		if (args.length == 0) // sender targets their self
 			sender.setHealth(sender.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
-		else if (args.length == 1) { // sender targets another player
-			if (sender.hasPermission("rc.heal.others")) {
-
-			final String playerName = args[0];
-
-			final Collection<? extends Player> onlinePlayers = RoyalCommands.getInstance().getServer().getOnlinePlayers();
-
-			for (final Player player : onlinePlayers)
-				if (player.getName().equals(playerName)) {
-					player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
-					break;
-				}
-			} else {
+		else if (args.length == 1)
+			if (!sender.hasPermission("rc.heal.others")) { // no perms
+				Common.tell(sender, "&4You do not have permission to use this command.");
 				return;
-				//no perm stuff
-			}
+			} else {
+				final String playerName = args[0];
 
-		}
+				final Collection<? extends Player> onlinePlayers = RoyalCommands.getInstance().getServer().getOnlinePlayers();
+
+				for (final Player player : onlinePlayers)
+					if (player.getName().equals(playerName)) {
+						player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
+						break;
+					}
+
+				return;
+			}
 
 	}
 

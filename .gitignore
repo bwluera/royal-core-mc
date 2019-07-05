@@ -5,3 +5,5 @@
 .settings/org.eclipse.m2e.core.prefs
 .settings/org.eclipse.jdt.core.prefs
 target
+target/classes/com/royalevolution/royalcommands/commands/CommandHeal.class
+target/classes/com/royalevolution/royalcommands/RoyalCommands.class
