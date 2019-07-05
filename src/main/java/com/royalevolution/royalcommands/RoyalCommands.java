@@ -56,6 +56,3 @@ public class RoyalCommands extends JavaPlugin {
 
 
 }
-
-
-

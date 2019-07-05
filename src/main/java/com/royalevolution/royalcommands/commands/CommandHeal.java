@@ -22,10 +22,9 @@ public class CommandHeal extends Command {
 
 	@Override
 	public boolean execute(CommandSender commandSender, String label, String[] args) { // TODO: make it so that you can heal for a specific amount?
-
 		if (commandSender instanceof Player) {
 			final Player sender = (Player) commandSender;
-
+			Double defaultAmount = sender.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
 			if (!sender.hasPermission("rc.heal")) { // no perms
 				Common.tell(sender, "&4You do not have permission to use this command.");
 				return true;
@@ -45,17 +44,28 @@ public class CommandHeal extends Command {
 					Common.tell(sender, "&4You do not have permission to use this command.");
 				else {
 					final String playerName = args[0];
-
-					findAndHeal(sender, playerName);
+					findAndHeal(sender, playerName, defaultAmount);
 				}
 
 				return true;
-			}
+			} else if (args.length == 2) {
+				final String playerName = args[0];
+				
+				try {
+					
+					final Double amount = Double.valueOf(args[1]);
+					findAndHeal(sender, playerName, amount);
+				} catch (Exception e) {
+					//TODO: add real error message
+					Common.tell(sender, "reee");
+					}
+				        
+				}
 
 		} else if (args.length == 1) { // Console-sent command
 			final String playerName = args[0];
-
-			findAndHeal(commandSender, playerName);
+			//TODO: make console heal with the default value thing
+			findAndHeal(commandSender, playerName, Double.valueOf(20));
 
 			return true;
 		}
@@ -63,7 +73,20 @@ public class CommandHeal extends Command {
 		return true;
 	}
 
-	public static void findAndHeal(CommandSender sender, String playerName) {
+
+	private static Double setAmount(Player player, Double amount) {
+		if (amount == player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue()) {
+			return player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
+		} else {
+			if ((player.getHealth() + amount) > 20) {
+				return player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
+			} else return player.getHealth() + amount;
+			
+		}
+		
+	}
+	
+	public static void findAndHeal(CommandSender sender, String playerName, Double amount) {
 		for (final Player player : RoyalCommands.getOnlinePlayers())
 			if (player.getName().equals(playerName))
 				if ((player.getHealth() == player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue())) {
@@ -71,9 +94,20 @@ public class CommandHeal extends Command {
 					return;
 				}
 				else {
-					Common.tell(player, RoyalCommands.getPrefix() + "You've been healed by " + "&3" + (sender instanceof Player ? sender.getName() : "Console") +"&r!");
-					Common.tell(sender, RoyalCommands.getPrefix() + "You have successfully healed " + playerName + ".");
-					player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
+					if (amount.equals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue())) {
+					Common.tell(player, RoyalCommands.getPrefix() + "You've been healed by &3" + (sender instanceof Player ? sender.getName() : "Console") +"&r!");
+					} else {
+						Common.tell(player, RoyalCommands.getPrefix() + "You've been healed by &3" + (sender instanceof Player ? sender.getName() : "Console") 
+								+ "&rfor &3" + amount + "&bHP &r!");
+					}
+					if (amount.equals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue())) {
+						Common.tell(sender, RoyalCommands.getPrefix() + "You have successfully healed &3" + playerName + "&r.");
+						} else {
+							Common.tell(sender, RoyalCommands.getPrefix() + "You have successfully healed &3" + playerName + "&rfor &3" + amount + "&bHP &r!");
+						}
+					
+					if (amount.equals(null)) amount = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
+					player.setHealth(setAmount(player, amount));
 					return;
 				}
 
