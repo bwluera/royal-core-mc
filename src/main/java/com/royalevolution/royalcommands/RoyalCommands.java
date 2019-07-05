@@ -7,7 +7,6 @@ import com.royalevolution.royalcommands.commands.CommandFeed;
 import com.royalevolution.royalcommands.commands.CommandFly;
 import com.royalevolution.royalcommands.commands.CommandHat;
 import com.royalevolution.royalcommands.commands.CommandHeal;
-
 import com.royalevolution.royalcommands.utils.Common;
 
 public class RoyalCommands extends JavaPlugin {
@@ -19,11 +18,15 @@ public class RoyalCommands extends JavaPlugin {
 	@Override
 	public void onEnable() { // all necessary plugin startup functions go here
 
-		Common.registerCommand(new CommandFly());
-		Common.registerCommand(new CommandFeed());
-		Common.registerCommand(new CommandHeal());
-		Common.registerCommand(new CommandBroadcast());
-		Common.registerCommand(new CommandHat());
+		Common.registerCommands(
+				new CommandFly(),
+				new CommandFeed(),
+				new CommandHeal(),
+				new CommandBroadcast(),
+				new CommandHat()
+				);
+
+
 
 	}
 
