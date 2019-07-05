@@ -32,7 +32,7 @@ public class CommandHeal extends Command {
 			}
 
 			if (args.length == 0) {// sender targets their self
-				if ( ! (sender.getHealth() == sender.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue()))
+				if ((sender.getHealth() == sender.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue()))
 					Common.tell(sender, RoyalCommands.getPrefix() + "&cYou're already at full HP!");
 				else {
 					Common.tell(sender, RoyalCommands.getPrefix() + "You've been healed.");
