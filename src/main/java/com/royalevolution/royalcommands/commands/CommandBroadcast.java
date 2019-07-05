@@ -20,11 +20,13 @@ public class CommandBroadcast extends PlayerCommand {
 	@Override
 	protected void run(Player sender, String[] args) {
 		String message = "";
-		for (final String part : args) {
+
+		for (final String word : args) {
 			if (message != "") message += " ";
-			message += part;
+			message += word;
 		}
+
 		for (final Player player : RoyalCommands.getOnlinePlayers())
-			player.sendMessage(Common.colorize("&3&lB&f&lroad&3&lc&f&last &8> &r" + message));
+			Common.tell(player, "&3&lB&f&lroad&3&lc&f&last &8> &r" + message);
 	}
 }

@@ -54,6 +54,7 @@ public class RoyalCommands extends JavaPlugin {
 		return instance.getServer().getOnlinePlayers();
 	}
 
+
 }
 
 
