@@ -28,8 +28,8 @@ public class Common {
 		sender.sendMessage(colorize(message));
 	}
 
-	public static boolean invCanFit(Inventory i) {
-		return i.getContents().length < 36;
+	public static boolean invCanFit(Inventory inv) {
+		return inv.getContents().length < 36;
 	}
 
 	public static void tell(CommandSender sender, String... messages) {
@@ -64,6 +64,10 @@ public class Common {
 
 			log("&4Could not register command: " + command.getName());
 		}
+	}
+
+	public static void sendNoPerm(CommandSender sender) {
+		Common.tell(sender, "&4You do not have permission to use this command.");
 	}
 
 	public static void registerCommands(Command...commands) {

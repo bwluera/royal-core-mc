@@ -40,8 +40,8 @@ public class CommandHeal extends Command {
 				return true;
 			}
 			else if (args.length == 1) {
-				if (!sender.hasPermission("rc.heal.others"))
-					Common.tell(sender, "&4You do not have permission to use this command.");
+				if (!sender.hasPermission("rc.heal.others")) Common.sendNoPerm(sender);
+					
 				else {
 					final String playerName = args[0];
 					findAndHeal(sender, playerName, defaultAmount);
