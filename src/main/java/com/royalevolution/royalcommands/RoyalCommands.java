@@ -6,10 +6,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.royalevolution.royalcommands.commands.CommandBroadcast;
+import com.royalevolution.royalcommands.commands.CommandClearInv;
 import com.royalevolution.royalcommands.commands.CommandFeed;
 import com.royalevolution.royalcommands.commands.CommandFly;
 import com.royalevolution.royalcommands.commands.CommandHat;
 import com.royalevolution.royalcommands.commands.CommandHeal;
+import com.royalevolution.royalcommands.events.JoinLeaveListener;
 import com.royalevolution.royalcommands.utils.Common;
 
 public class RoyalCommands extends JavaPlugin {
@@ -28,8 +30,11 @@ public class RoyalCommands extends JavaPlugin {
 				new CommandFeed(),
 				new CommandHeal(),
 				new CommandBroadcast(),
-				new CommandHat()
+				new CommandHat(),
+				new CommandClearInv()
 				);
+		Common.registerEvents(this, 
+				new JoinLeaveListener());
 
 	}
 
