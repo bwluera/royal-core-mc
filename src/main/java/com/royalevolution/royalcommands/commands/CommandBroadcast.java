@@ -13,7 +13,7 @@ public class CommandBroadcast extends PlayerCommand {
 		super("broadcast");
 
 		setAliases(Arrays.asList("rbc", "bc", "rbroadcast"));
-		setDescription("Broadcasts a message to the whole server");
+		setDescription("Broadcasts a message to the whole server.");
 		setUsage("/broadcast [message]");
 	}
 

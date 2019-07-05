@@ -13,7 +13,7 @@ public class CommandFeed extends PlayerCommand {
 
 	public CommandFeed() {
 		super("feed");
-		
+
 		setAliases(Arrays.asList("rfeed", "reat", "eat"));
 		setDescription("feeds you or another player.");
 		setUsage("/feed [user]");
@@ -26,30 +26,26 @@ public class CommandFeed extends PlayerCommand {
 				if (sender.getFoodLevel() != 20) {
 					sender.setFoodLevel(20);
 					Common.tell(sender, RoyalCommands.getPrefix() + "You've been fed!");
-				} else {
+				} else
 					Common.tell(sender, RoyalCommands.getPrefix() + "&cYou're not hungry!");
-				}	
-			} else if
-			(args.length == 1) { //1 arguments means arg0 = target
+				return;
+			}
+			else if (args.length == 1) { //1 arguments means arg0 = target
 				if (sender.hasPermission("rc.feed.others")) {
-					String targetName = args[0];
-					for (Player all : RoyalCommands.getInstance().getServer().getOnlinePlayers()) {
-						if (ChatColor.stripColor(all.getDisplayName()).equals(targetName)) {
-							all.setFoodLevel(20);
-						} else {
+					final String targetName = args[0];
+					for (final Player player : RoyalCommands.getInstance().getServer().getOnlinePlayers())
+						if (ChatColor.stripColor(player.getName()).equals(targetName))
+							player.setFoodLevel(20);
+						else
 							Common.tell(sender, RoyalCommands.getPrefix() + "&cPlayer not found!");
-						}
-					}
 					if (sender.getFoodLevel() != 20) {
 						sender.setFoodLevel(20);
 						Common.tell(sender, RoyalCommands.getPrefix() + "You've been fed!");
-					} else {
+					} else
 						Common.tell(sender, RoyalCommands.getPrefix() + "&cYou're not hungry!");
-					}
 				}
-			} else {
+			} else
 				Common.tell(sender, RoyalCommands.getPrefix() + "&cSyntax error. Usage: &b/feed [player]");
-			}
 		} else return;
 	}
 }
