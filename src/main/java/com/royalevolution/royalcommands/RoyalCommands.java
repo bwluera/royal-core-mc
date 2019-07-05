@@ -31,8 +31,6 @@ public class RoyalCommands extends JavaPlugin {
 				new CommandHat()
 				);
 
-
-
 	}
 
 	@Override

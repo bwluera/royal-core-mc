@@ -2,9 +2,9 @@ package com.royalevolution.royalcommands.commands;
 
 import java.util.Arrays;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import com.royalevolution.royalcommands.RoyalCommands;
 import com.royalevolution.royalcommands.utils.Common;
 
 public class CommandBroadcast extends PlayerCommand {
@@ -24,7 +24,7 @@ public class CommandBroadcast extends PlayerCommand {
 			if (message != "") message += " ";
 			message += part;
 		}
-		for (final Player player : Bukkit.getServer().getOnlinePlayers())
+		for (final Player player : RoyalCommands.getOnlinePlayers())
 			player.sendMessage(Common.colorize("&3&lB&f&lroad&3&lc&f&last &8> &r" + message));
 	}
 }
