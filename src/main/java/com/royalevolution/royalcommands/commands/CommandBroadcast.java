@@ -20,13 +20,17 @@ public class CommandBroadcast extends PlayerCommand {
 	@Override
 	protected void run(Player sender, String[] args) {
 		String message = "";
+		if (args.length != 0) {
 
-		for (final String word : args) {
-			if (message != "") message += " ";
-			message += word;
+			for (final String word : args) {
+				if (message != "") message += " ";
+				message += word;
+			}
+
+			for (final Player player : RoyalCommands.getOnlinePlayers())
+				Common.tell(player, "&3&lB&f&lroad&3&lc&f&last &8> &r" + message);
+		} else {
+			Common.tell(sender, RoyalCommands.getPrefix() + "&cSyntax error. Usage: &b/bc <message>");
 		}
-
-		for (final Player player : RoyalCommands.getOnlinePlayers())
-			Common.tell(player, "&3&lB&f&lroad&3&lc&f&last &8> &r" + message);
 	}
 }

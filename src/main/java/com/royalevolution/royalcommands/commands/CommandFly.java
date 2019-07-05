@@ -49,6 +49,7 @@ public class CommandFly extends PlayerCommand {
 							Common.tell(sender, prefix + "&cPlayer not found!");
 				} else return; // no permission message for flying others
 			} else {
+				Common.tell(sender, prefix + "&cSyntax error. Usage: &b/fly [player]");
 				//syntax error
 			}
 		} else return; // no permission for using /fly
