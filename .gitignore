@@ -7,3 +7,4 @@
 target
 target/classes/com/royalevolution/royalcommands/commands/CommandHeal.class
 target/classes/com/royalevolution/royalcommands/RoyalCommands.class
+*.class
