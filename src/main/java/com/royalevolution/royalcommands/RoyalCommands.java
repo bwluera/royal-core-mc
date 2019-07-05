@@ -1,5 +1,8 @@
 package com.royalevolution.royalcommands;
 
+import java.util.Collection;
+
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.royalevolution.royalcommands.commands.CommandBroadcast;
@@ -17,6 +20,8 @@ public class RoyalCommands extends JavaPlugin {
 
 	@Override
 	public void onEnable() { // all necessary plugin startup functions go here
+
+		instance = this;
 
 		Common.registerCommands(
 				new CommandFly(),
@@ -45,6 +50,10 @@ public class RoyalCommands extends JavaPlugin {
 
 	public static String getPrefix() {
 		return prefix;
+	}
+
+	public static Collection<? extends Player> getOnlinePlayers() {
+		return instance.getServer().getOnlinePlayers();
 	}
 
 }
