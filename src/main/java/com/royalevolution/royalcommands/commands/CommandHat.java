@@ -2,6 +2,7 @@ package com.royalevolution.royalcommands.commands;
 
 import java.util.Arrays;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -16,21 +17,18 @@ public class CommandHat extends PlayerCommand {
 		setAliases(Arrays.asList("rhat"));
 		setDescription("Sets your hat to the item in your main hand.");
 		setUsage("/hat [user]");
-		
+
 	}
 
 	@Override
 	protected void run(Player sender, String[] args) {
 		if (sender.hasPermission("rc.hat")) {
-			final Integer helmSlot = 103;
 			final ItemStack mainHand = sender.getInventory().getItemInMainHand();
-			final ItemStack oldHat = sender.getInventory().getItem(helmSlot);
-			if (mainHand != null) {
-				if (Common.invCanFit(sender.getInventory())) {
-					sender.getInventory().setItem(helmSlot, mainHand);
+			final ItemStack oldHat = sender.getInventory().getHelmet();
+			if (mainHand != null && mainHand.getType() != Material.AIR) {
+					Common.tell(sender, "Enjoy your new hat!");
+					sender.getInventory().setHelmet(mainHand);
 					sender.getInventory().setItemInMainHand(oldHat);
-				} else 
-					Common.tell(sender, RoyalCommands.getPrefix() + "&cYou don't have any space in your inventory!");
 			} else 
 				Common.tell(sender, RoyalCommands.getPrefix() + "You can't wear nothing, silly");
 
