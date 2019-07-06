@@ -26,12 +26,12 @@ public class RoyalCommands extends JavaPlugin {
 		instance = this;
 
 		Common.registerCommands(
+				new CommandHat(),
 				new CommandFly(),
 				new CommandFeed(),
 				new CommandHeal(),
-				new CommandBroadcast(),
-				new CommandHat(),
-				new CommandClearInv()
+				new CommandClearInv(),
+				new CommandBroadcast()
 				);
 		Common.registerEvents(this, 
 				new JoinLeaveListener());
