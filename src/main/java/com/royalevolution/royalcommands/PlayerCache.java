@@ -67,12 +67,10 @@ public class PlayerCache {
 
             while (i.hasNext()) {
                 String homeName = String.valueOf(i.next());
-                Common.log(homeName);
+
                 Location l = homes.get(homeName);
 
                 String homeKey = l.getWorld().getName() + "|" + l.getX() + "|" + l.getY() + "|" + l.getZ() + "|" + l.getYaw() + "|" + l.getPitch();
-
-                Common.log(homeKey);
 
                 cache.set(uuid + ".homes." + homeName, homeKey);
             }
