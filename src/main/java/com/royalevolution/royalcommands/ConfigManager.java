@@ -12,7 +12,7 @@ import com.royalevolution.royalcommands.utils.Common;
 public class ConfigManager {
 	
 	//registering the files
-	//config
+	//homes
 	public FileConfiguration configfile;
 	public File config;
 	//endconfig
@@ -25,14 +25,14 @@ public class ConfigManager {
 			//make data folder
 			plugin.getDataFolder().mkdir();
 		}
-	//config file creating stuff
-	config = new File(plugin.getDataFolder(), "config.yml");
+	//homes file creating stuff
+	config = new File(plugin.getDataFolder(), "homes.yml");
 	if (!config.exists()) {
 		try {
 			config.createNewFile();
-			Common.log("Created config.yml");
+			Common.log("Created homes.yml");
 		} catch (IOException excep){
-			Common.log("Can't create a config.yml file");
+			Common.log("Can't create a homes.yml file");
 		}
 	}
 	
@@ -43,14 +43,14 @@ public class ConfigManager {
 	public void saveFiles() {
 		try {
 			configfile.save(config);
-			Common.log("Saved config.yml");
+			Common.log("Saved homes.yml");
 		} catch (IOException excep) {
-			Common.log("Couldn't save the config.yml");
+			Common.log("Couldn't save the homes.yml");
 		}
 	}
 	
 	public void reloadFiles() {
-		Common.log("Reloaded config.yml");
+		Common.log("Reloaded homes.yml");
 		configfile = YamlConfiguration.loadConfiguration(config);
 	}
 	//TODO: add default values

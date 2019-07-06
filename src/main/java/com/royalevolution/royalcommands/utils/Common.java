@@ -2,6 +2,8 @@ package com.royalevolution.royalcommands.utils;
 
 
 import java.lang.reflect.Field;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -11,6 +13,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.PluginManager;
 
 import com.royalevolution.royalcommands.RoyalCommands;
@@ -73,5 +77,28 @@ public class Common {
 	public static void registerCommands(Command...commands) {
 		for (final Command command : commands)
 			registerCommand(command);
+	}
+
+	public static ArrayList<String> getPermissionData(Set<PermissionAttachmentInfo> permAttachments, String permBase) { // returns all parts of a permission eg {"rc", "home"}
+		ArrayList<String> data = null;
+
+		Iterator i = permAttachments.iterator();
+
+		while(i.hasNext()) {
+			PermissionAttachmentInfo permAttachment = (PermissionAttachmentInfo) i.next();
+
+			if (permAttachment.getPermission().startsWith(permBase)) {
+				data = new ArrayList<String>(Arrays.asList(permAttachment.getPermission().split(".")));
+				return data;
+			}
+		}
+
+		return data;
+	}
+
+	public static String getPermissionData(Set<PermissionAttachmentInfo> permAttachments, String permBase, int i) { // returns specified part of list
+		ArrayList<String> data = getPermissionData(permAttachments, permBase);
+
+		return data.get(i);
 	}
 }

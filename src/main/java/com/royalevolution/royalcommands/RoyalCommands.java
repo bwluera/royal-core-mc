@@ -1,21 +1,25 @@
 package com.royalevolution.royalcommands;
 
 import java.util.Collection;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import com.royalevolution.royalcommands.commands.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.royalevolution.royalcommands.commands.CommandBroadcast;
-import com.royalevolution.royalcommands.commands.CommandClearInv;
-import com.royalevolution.royalcommands.commands.CommandFeed;
-import com.royalevolution.royalcommands.commands.CommandFly;
-import com.royalevolution.royalcommands.commands.CommandHat;
-import com.royalevolution.royalcommands.commands.CommandHeal;
 import com.royalevolution.royalcommands.events.JoinLeaveListener;
 import com.royalevolution.royalcommands.utils.Common;
 
 public class RoyalCommands extends JavaPlugin {
+
+	private static final Cache<UUID, PlayerCache> playerCache = CacheBuilder.newBuilder()
+			.maximumSize(1_000)
+			.expireAfterWrite(240, TimeUnit.MINUTES)
+			.build();
 
 	private final static String prefix = "&3&lR&b&loyal&3&lC&b&lommands &8> &r";
 
@@ -32,12 +36,16 @@ public class RoyalCommands extends JavaPlugin {
 				new CommandFeed(),
 				new CommandHeal(),
 				new CommandClearInv(),
-				new CommandBroadcast()
+				new CommandBroadcast(),
+				new CommandHome(),
+				new CommandSetHome()
 				);
 		Common.registerEvents(this, 
 				new JoinLeaveListener());
 
 		loadConfigManager();
+
+		Common.log("Initialized RoyalCommands. [Version " + this.getDescription().getVersion() + "]");
 	}
 
 	@Override
@@ -63,6 +71,18 @@ public class RoyalCommands extends JavaPlugin {
 	
 	public static Plugin getPlugin() {
 		return RoyalCommands.getPlugin(RoyalCommands.class);
+	}
+
+	public static PlayerCache getCache(UUID uuid) {
+		PlayerCache cache = playerCache.getIfPresent(uuid);
+
+		if (cache == null) {
+			cache = new PlayerCache(uuid);
+
+			playerCache.put(uuid, cache);
+		}
+
+		return cache;
 	}
 
 	public static String getPrefix() {
