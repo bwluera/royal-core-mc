@@ -3,6 +3,7 @@ package com.royalevolution.royalcommands;
 import java.util.Collection;
 
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.royalevolution.royalcommands.commands.CommandBroadcast;
@@ -36,6 +37,7 @@ public class RoyalCommands extends JavaPlugin {
 		Common.registerEvents(this, 
 				new JoinLeaveListener());
 
+		loadConfigManager();
 	}
 
 	@Override
@@ -48,6 +50,8 @@ public class RoyalCommands extends JavaPlugin {
 	public void loadConfigManager() {
 		confm = new ConfigManager();
 		confm.filesSetup();
+		confm.saveFiles();
+		confm.reloadFiles();
 	}
 	public void reload() {
 		// TODO: make it so this function updates all mutable data and call it upon an 'rc reload' command
@@ -55,6 +59,10 @@ public class RoyalCommands extends JavaPlugin {
 
 	public static RoyalCommands getInstance() {
 		return instance;
+	}
+	
+	public static Plugin getPlugin() {
+		return RoyalCommands.getPlugin(RoyalCommands.class);
 	}
 
 	public static String getPrefix() {
