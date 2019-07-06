@@ -42,7 +42,13 @@ public class RoyalCommands extends JavaPlugin {
 	public void onDisable() {
 		instance = null;
 	}
-
+	
+	private ConfigManager confm;
+	
+	public void loadConfigManager() {
+		confm = new ConfigManager();
+		confm.filesSetup();
+	}
 	public void reload() {
 		// TODO: make it so this function updates all mutable data and call it upon an 'rc reload' command
 	}
