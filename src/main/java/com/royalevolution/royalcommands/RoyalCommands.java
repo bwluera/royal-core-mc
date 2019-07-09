@@ -43,6 +43,9 @@ public class RoyalCommands extends JavaPlugin {
 		Common.registerEvents(this, 
 				new JoinLeaveListener());
 
+		//adding custom recipes
+		CustomRecipes.addCustomRecipes();
+		
 		loadConfigManager();
 
 		Common.log("Initialized RoyalCommands. [Version " + this.getDescription().getVersion() + "]");
