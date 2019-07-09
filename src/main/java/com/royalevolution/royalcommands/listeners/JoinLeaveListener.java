@@ -1,4 +1,4 @@
-package com.royalevolution.royalcommands.events;
+package com.royalevolution.royalcommands.listeners;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

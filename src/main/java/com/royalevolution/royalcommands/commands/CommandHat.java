@@ -30,7 +30,7 @@ public class CommandHat extends PlayerCommand {
 					sender.getInventory().setHelmet(mainHand);
 					sender.getInventory().setItemInMainHand(oldHat);
 			} else 
-				Common.tell(sender, RoyalCommands.getPrefix() + "You can't wear nothing, silly");
+				Common.tell(sender, RoyalCommands.getChatPrefix() + "You can't wear nothing, silly");
 
 
 		} else Common.sendNoPerm(sender);

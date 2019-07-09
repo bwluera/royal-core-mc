@@ -7,11 +7,12 @@ import java.util.concurrent.TimeUnit;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.royalevolution.royalcommands.commands.*;
+import com.royalevolution.royalcommands.listeners.PlayerChatListener;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.royalevolution.royalcommands.events.JoinLeaveListener;
+import com.royalevolution.royalcommands.listeners.JoinLeaveListener;
 import com.royalevolution.royalcommands.utils.Common;
 
 public class RoyalCommands extends JavaPlugin {
@@ -21,7 +22,7 @@ public class RoyalCommands extends JavaPlugin {
 			.expireAfterWrite(240, TimeUnit.MINUTES)
 			.build();
 
-	private final static String prefix = "&3&lR&b&loyal&3&lC&b&lommands &8> &r";
+	private final static String chatPrefix = "&3&lR&b&loyal&3&lC&b&lommands &8> &r";
 
 	private static RoyalCommands instance;
 
@@ -38,10 +39,13 @@ public class RoyalCommands extends JavaPlugin {
 				new CommandClearInv(),
 				new CommandBroadcast(),
 				new CommandHome(),
-				new CommandSetHome()
+				new CommandSetHome(),
+				new CommandRC()
 				);
 		Common.registerEvents(this, 
-				new JoinLeaveListener());
+				new JoinLeaveListener(),
+				new PlayerChatListener()
+				);
 
 		loadConfigManager();
 
@@ -63,7 +67,24 @@ public class RoyalCommands extends JavaPlugin {
 	}
 	public void reload() {
 		// TODO: make it so this function updates all mutable data and call it upon an 'rc reload' command
+
+		PlayerCache.reloadFile(); // load /save playercache.dat
+
+		// next, update all playercaches
+
+		updatePlayerCaches();
+
+
 	}
+
+	public static void updatePlayerCaches() { // updates all players data read from playerCache.dat
+		for (Player player : getOnlinePlayers()) {
+			PlayerCache cache = getCache(player);
+
+			cache.reloadCache();
+		}
+	}
+
 
 	public static RoyalCommands getInstance() {
 		return instance;
@@ -85,8 +106,12 @@ public class RoyalCommands extends JavaPlugin {
 		return cache;
 	}
 
-	public static String getPrefix() {
-		return prefix;
+	public static PlayerCache getCache(Player player) {
+		return getCache(player.getUniqueId());
+	}
+
+	public static String getChatPrefix() {
+		return chatPrefix;
 	}
 
 	public static Collection<? extends Player> getOnlinePlayers() {
