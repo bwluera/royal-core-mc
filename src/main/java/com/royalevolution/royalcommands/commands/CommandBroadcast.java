@@ -31,7 +31,7 @@ public class CommandBroadcast extends PlayerCommand {
 				for (final Player player : RoyalCommands.getOnlinePlayers())
 					Common.tell(player, "&3&lB&f&lroad&3&lc&f&last &8> &r" + message);
 			} else {
-				Common.tell(sender, RoyalCommands.getPrefix() + "&cSyntax error. Usage: &b/bc <message>");
+				Common.tell(sender, RoyalCommands.getChatPrefix() + "&cSyntax error. Usage: &b/bc <message>");
 			}
 		} else Common.sendNoPerm(sender);
 	}

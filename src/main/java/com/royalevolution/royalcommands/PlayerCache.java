@@ -3,10 +3,8 @@ package com.royalevolution.royalcommands;
 import com.royalevolution.royalcommands.utils.Common;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.FileConfigurationOptions;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -15,39 +13,44 @@ import java.util.*;
 
 public class PlayerCache {
 
-    private final FileConfiguration cache;
-    final File file = new File("plugins/RoyalCommands/playerCache.dat");
+    private static FileConfiguration cache = null;
 
-    private final UUID uuid;
+    final static File file = new File("plugins/RoyalCommands/playerCache.dat");
 
-    private HashMap<String, Location> homes = new HashMap();
-
-    public PlayerCache(UUID uuid) {
+    static {
         if (file.exists()) {
             cache = YamlConfiguration.loadConfiguration(file);
 
             try {
                 cache.load(file);
             } catch (IOException | InvalidConfigurationException e) {
-                Common.log(RoyalCommands.getPrefix() + "FATAL: Failed to load 'playerCache.yml'!");
+                Common.log(RoyalCommands.getChatPrefix() + "FATAL: Failed to load 'playerCache.yml'!");
                 e.printStackTrace();
             }
         } else {
             RoyalCommands.getInstance().saveResource("playerCache.dat", false);
             cache = YamlConfiguration.loadConfiguration(file);
 
-            Common.log(RoyalCommands.getPrefix() + "File playerCache.dat successfully created.");
+            Common.log(RoyalCommands.getChatPrefix() + "File playerCache.dat successfully created.");
         }
+    }
 
+    private final UUID uuid;
+
+    private HashMap<String, Location> homes = new HashMap();
+
+    public PlayerCache(UUID uuid) {
         this.uuid = uuid;
 
         onLoad();
     }
 
-    private void onLoad() {
+    private void onLoad() { // main method to load all data from player cache
+
     }
 
-    public void save() {
+    public void save() { // main method to save all data to the player cache file
+                        // WARNING: always use the save method before any load methods
         saveHomes();
 
         try {
@@ -57,6 +60,21 @@ public class PlayerCache {
             e.printStackTrace();
         }
     }
+
+    public static void reloadFile() { // contains all methods to load player data
+        try {
+            cache.load(file);
+        } catch (IOException | InvalidConfigurationException e) {
+            Common.log(RoyalCommands.getChatPrefix() + "Exception occurred while reloading 'playerCache.dat'!");
+            e.printStackTrace();
+        }
+    }
+
+    public void reloadCache() { // use this when only updating one players data. refer to RoyalCommands.updatePlayerCaches() to update all players data
+        loadHomes();
+    }
+
+    // all sub-methods for saving / loading player data go in this section
 
     public void saveHomes() {
         if (!homes.isEmpty()) {
@@ -76,6 +94,16 @@ public class PlayerCache {
             }
 
         }
+    }
+
+    public void loadHomes() {
+        homes.clear(); // we need to clear the homes before adding all the ones from the config (would add duplicates)
+                    // therefore, we should always use the save() method before using this
+        for (String homeName : cache.getConfigurationSection(uuid + ".homes").getKeys(false)) {
+            Location location = getHomeLocation(homeName);
+            homes.put(homeName, location);
+        }
+
     }
 
     // All player data related methods go below here

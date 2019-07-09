@@ -21,7 +21,7 @@ public class CommandFly extends PlayerCommand {
 
 	@Override
 	protected void run(Player sender, String[] args) {
-		final String prefix = RoyalCommands.getPrefix();
+		final String prefix = RoyalCommands.getChatPrefix();
 
 		if (sender.hasPermission("rc.fly")) {
 			if (args.length == 0) { //no args. sender = target

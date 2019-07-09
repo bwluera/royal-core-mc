@@ -32,9 +32,9 @@ public class CommandHeal extends Command {
 
 			if (args.length == 0) {// sender targets their self
 				if ((sender.getHealth() == sender.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue()))
-					Common.tell(sender, RoyalCommands.getPrefix() + "&cYou're already at full HP!");
+					Common.tell(sender, RoyalCommands.getChatPrefix() + "&cYou're already at full HP!");
 				else {
-					Common.tell(sender, RoyalCommands.getPrefix() + "You've been healed.");
+					Common.tell(sender, RoyalCommands.getChatPrefix() + "You've been healed.");
 					sender.setHealth(sender.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue());
 				}
 				return true;
@@ -90,20 +90,20 @@ public class CommandHeal extends Command {
 		for (final Player player : RoyalCommands.getOnlinePlayers())
 			if (player.getName().equals(playerName))
 				if ((player.getHealth() == player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue())) {
-					Common.tell(sender, RoyalCommands.getPrefix() + "&cThe target is already at full HP!");
+					Common.tell(sender, RoyalCommands.getChatPrefix() + "&cThe target is already at full HP!");
 					return;
 				}
 				else {
 					if (amount.equals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue())) {
-					Common.tell(player, RoyalCommands.getPrefix() + "You've been healed by &3" + (sender instanceof Player ? sender.getName() : "Console") +"&r!");
+					Common.tell(player, RoyalCommands.getChatPrefix() + "You've been healed by &3" + (sender instanceof Player ? sender.getName() : "Console") +"&r!");
 					} else {
-						Common.tell(player, RoyalCommands.getPrefix() + "You've been healed by &3" + (sender instanceof Player ? sender.getName() : "Console") 
+						Common.tell(player, RoyalCommands.getChatPrefix() + "You've been healed by &3" + (sender instanceof Player ? sender.getName() : "Console")
 								+ "&rfor &3" + amount + "&bHP &r!");
 					}
 					if (amount.equals(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue())) {
-						Common.tell(sender, RoyalCommands.getPrefix() + "You have successfully healed &3" + playerName + "&r.");
+						Common.tell(sender, RoyalCommands.getChatPrefix() + "You have successfully healed &3" + playerName + "&r.");
 						} else {
-							Common.tell(sender, RoyalCommands.getPrefix() + "You have successfully healed &3" + playerName + "&rfor &3" + amount + "&bHP &r!");
+							Common.tell(sender, RoyalCommands.getChatPrefix() + "You have successfully healed &3" + playerName + "&rfor &3" + amount + "&bHP &r!");
 						}
 					
 					if (amount.equals(null)) amount = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getDefaultValue();
@@ -111,7 +111,7 @@ public class CommandHeal extends Command {
 					return;
 				}
 
-		Common.tell(sender, RoyalCommands.getPrefix() + "&cPlayer not found!");
+		Common.tell(sender, RoyalCommands.getChatPrefix() + "&cPlayer not found!");
 	}
 
 
