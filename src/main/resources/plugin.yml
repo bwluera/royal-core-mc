@@ -1,5 +1,6 @@
 name: RoyalCommands
 main: ${mainClass}
 version: 1.0.0
+api-version: 1.13
 authors: [einstein8612, ssnd]
 softdepend: [Vault]
