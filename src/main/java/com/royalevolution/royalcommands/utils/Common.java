@@ -105,23 +105,4 @@ public class Common {
 
 		return data.get(i);
 	}
-	
-	public static void addRecipe (Material m1, Material m2, Material m3, 
-				   				  Material m4, Material m5, Material m6,
-				   				  Material m7, Material m8, Material m9, ItemStack outcome) {
-		final NamespacedKey key = NamespacedKey.minecraft("outcome");
-		final ShapedRecipe recipe = new ShapedRecipe(key, outcome);
-		recipe.shape("abc","def","ghi");
-		recipe.setIngredient('a', m1);
-		recipe.setIngredient('b', m2);
-		recipe.setIngredient('c', m3);
-		recipe.setIngredient('d', m4);
-		recipe.setIngredient('e', m4);
-		recipe.setIngredient('f', m6);
-		recipe.setIngredient('g', m7);
-		recipe.setIngredient('h', m8);
-		recipe.setIngredient('i', m9);
-		Bukkit.getServer().addRecipe(recipe);
-		
-	}
 }
