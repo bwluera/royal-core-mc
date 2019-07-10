@@ -1,7 +1,7 @@
 package com.royalevolution.royalcommands.commands;
 
 import com.royalevolution.royalcommands.PlayerCache;
-import com.royalevolution.royalcommands.RoyalCommands;
+import com.royalevolution.royalcommands.RoyalCore;
 import com.royalevolution.royalcommands.utils.Common;
 import org.bukkit.entity.Player;
 
@@ -21,18 +21,18 @@ public class CommandListHomes extends PlayerCommand {
 
     @Override
     protected void run(Player sender, String[] args) {
-        PlayerCache cache = RoyalCommands.getCache(sender);
+        PlayerCache cache = RoyalCore.getCache(sender);
 
         if (args.length == 0) {
             if (cache.getHomes().isEmpty()) {
-                Common.tell(sender, RoyalCommands.getChatPrefix() + "You don't have any homes set. Use /sethome!");
+                Common.tell(sender, RoyalCore.getChatPrefix() + "You don't have any homes set. Use /sethome!");
                 return;
             }
 
             Set<String> homes = cache.getHomes().keySet();
             Iterator i = homes.iterator();
 
-            String page = RoyalCommands.getChatPrefix();
+            String page = RoyalCore.getChatPrefix();
 
             while (i.hasNext()) {
 

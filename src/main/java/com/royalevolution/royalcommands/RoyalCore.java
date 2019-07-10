@@ -15,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.royalevolution.royalcommands.listeners.JoinLeaveListener;
 import com.royalevolution.royalcommands.utils.Common;
 
-public class RoyalCommands extends JavaPlugin {
+public class RoyalCore extends JavaPlugin {
 
 	private static final Cache<UUID, PlayerCache> playerCache = CacheBuilder.newBuilder()
 			.maximumSize(1_000)
@@ -24,7 +24,7 @@ public class RoyalCommands extends JavaPlugin {
 
 	private final static String chatPrefix = "&3&lR&b&loyal&3&lC&b&lommands &8> &r";
 
-	private static RoyalCommands instance;
+	private static RoyalCore instance;
 
 	@Override
 	public void onEnable() { // all necessary plugin startup functions go here
@@ -89,12 +89,12 @@ public class RoyalCommands extends JavaPlugin {
 	}
 
 
-	public static RoyalCommands getInstance() {
+	public static RoyalCore getInstance() {
 		return instance;
 	}
 	
 	public static Plugin getPlugin() {
-		return RoyalCommands.getPlugin(RoyalCommands.class);
+		return RoyalCore.getPlugin(RoyalCore.class);
 	}
 
 	public static PlayerCache getCache(UUID uuid) {

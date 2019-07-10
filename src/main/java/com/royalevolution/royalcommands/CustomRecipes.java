@@ -1,14 +1,11 @@
 package com.royalevolution.royalcommands;
 
-import com.royalevolution.royalcommands.utils.Common;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.Arrays;
 
 
 public class CustomRecipes {
@@ -29,7 +26,7 @@ public class CustomRecipes {
 								   Material m7, Material m8, Material m9,
 								     ItemStack outcome, String outcomeID) {
 
-		NamespacedKey key = new NamespacedKey(RoyalCommands.getInstance(), outcomeID);
+		NamespacedKey key = new NamespacedKey(RoyalCore.getInstance(), outcomeID);
 		ShapedRecipe recipe = new ShapedRecipe(key, outcome);
 		recipe.shape("abc","def","ghi");
 		recipe.setIngredient('a', m1);

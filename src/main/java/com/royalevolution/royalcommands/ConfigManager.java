@@ -17,7 +17,7 @@ public class ConfigManager {
 	public File config;
 	//endconfig
 	//end registering files
-	final Plugin plugin = RoyalCommands.getPlugin();
+	final Plugin plugin = RoyalCore.getPlugin();
 	
 	
 	public void filesSetup() {

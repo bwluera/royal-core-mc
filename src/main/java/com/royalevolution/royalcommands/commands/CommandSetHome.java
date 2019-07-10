@@ -1,7 +1,7 @@
 package com.royalevolution.royalcommands.commands;
 
 import com.royalevolution.royalcommands.PlayerCache;
-import com.royalevolution.royalcommands.RoyalCommands;
+import com.royalevolution.royalcommands.RoyalCore;
 import com.royalevolution.royalcommands.utils.Common;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachmentInfo;
@@ -22,16 +22,16 @@ public class CommandSetHome extends PlayerCommand {
     @Override
     protected void run(Player sender, String[] args) {
         if (!sender.hasPermission("rc.sethome")) { // no perms to set home
-            Common.tell(sender, RoyalCommands.getChatPrefix() + "&cYou don't have permission to set a home!");
+            Common.tell(sender, RoyalCore.getChatPrefix() + "&cYou don't have permission to set a home!");
             return;
         }
 
-        PlayerCache cache = RoyalCommands.getCache(sender.getUniqueId());
+        PlayerCache cache = RoyalCore.getCache(sender.getUniqueId());
 
         int allowedHomes = allowedHomes(sender);
 
         if (cache.getHomes().size() == allowedHomes) { // max homes reached
-            Common.tell(sender, RoyalCommands.getChatPrefix() + "&cFailed to set home: You've reached your max number of homes!");
+            Common.tell(sender, RoyalCore.getChatPrefix() + "&cFailed to set home: You've reached your max number of homes!");
             return;
         }
 
@@ -40,15 +40,15 @@ public class CommandSetHome extends PlayerCommand {
             String homeName = "home" + (homeNum == 1 ? "" : homeNum);
             cache.addHome(homeName, sender.getLocation());
 
-            Common.tell(sender, RoyalCommands.getChatPrefix() + "Successfully set a home named '" + homeName + "'.");
+            Common.tell(sender, RoyalCore.getChatPrefix() + "Successfully set a home named '" + homeName + "'.");
         }
         else if (args.length == 1) {
             cache.addHome(args[0], sender.getLocation());
 
-            Common.tell(sender, RoyalCommands.getChatPrefix() + "Successfully set a home named '" + args[0] + "'.");
+            Common.tell(sender, RoyalCore.getChatPrefix() + "Successfully set a home named '" + args[0] + "'.");
         }
         else {
-            Common.tell(sender, RoyalCommands.getChatPrefix() + "&cYou've entered too many arguments! &rUsage: /sethome [homeName]");
+            Common.tell(sender, RoyalCore.getChatPrefix() + "&cYou've entered too many arguments! &rUsage: /sethome [homeName]");
         }
     }
 

@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.bukkit.entity.Player;
 
-import com.royalevolution.royalcommands.RoyalCommands;
+import com.royalevolution.royalcommands.RoyalCore;
 import com.royalevolution.royalcommands.utils.Common;
 
 public class CommandBroadcast extends PlayerCommand {
@@ -28,10 +28,10 @@ public class CommandBroadcast extends PlayerCommand {
 					message += word;
 				}
 
-				for (final Player player : RoyalCommands.getOnlinePlayers())
+				for (final Player player : RoyalCore.getOnlinePlayers())
 					Common.tell(player, "&3&lB&f&lroad&3&lc&f&last &8> &r" + message);
 			} else {
-				Common.tell(sender, RoyalCommands.getChatPrefix() + "&cSyntax error. Usage: &b/bc <message>");
+				Common.tell(sender, RoyalCore.getChatPrefix() + "&cSyntax error. Usage: &b/bc <message>");
 			}
 		} else Common.sendNoPerm(sender);
 	}

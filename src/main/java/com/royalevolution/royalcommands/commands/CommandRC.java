@@ -1,6 +1,6 @@
 package com.royalevolution.royalcommands.commands;
 
-import com.royalevolution.royalcommands.RoyalCommands;
+import com.royalevolution.royalcommands.RoyalCore;
 import com.royalevolution.royalcommands.utils.Common;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class CommandRC extends Command {
 
-    String chatPrefix = RoyalCommands.getChatPrefix();
+    String chatPrefix = RoyalCore.getChatPrefix();
     String prefix = chatPrefix.substring(0, chatPrefix.length()-7) + "&r";
 
     public CommandRC() {
@@ -29,7 +29,7 @@ public class CommandRC extends Command {
         }
         else if (args.length == 1) {
             if (args[0].toLowerCase().equals("reload")) {
-                RoyalCommands.getInstance().reload();
+                RoyalCore.getInstance().reload();
                 Common.tell(sender, chatPrefix + "Successfully reloaded the plugin.");
             }
         }

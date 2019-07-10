@@ -6,7 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.royalevolution.royalcommands.RoyalCommands;
+import com.royalevolution.royalcommands.RoyalCore;
 import com.royalevolution.royalcommands.utils.Common;
 
 public class CommandHat extends PlayerCommand {
@@ -30,7 +30,7 @@ public class CommandHat extends PlayerCommand {
 					sender.getInventory().setHelmet(mainHand);
 					sender.getInventory().setItemInMainHand(oldHat);
 			} else 
-				Common.tell(sender, RoyalCommands.getChatPrefix() + "You can't wear nothing, silly");
+				Common.tell(sender, RoyalCore.getChatPrefix() + "You can't wear nothing, silly");
 
 
 		} else Common.sendNoPerm(sender);

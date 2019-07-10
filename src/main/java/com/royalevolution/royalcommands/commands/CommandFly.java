@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.bukkit.entity.Player;
 
-import com.royalevolution.royalcommands.RoyalCommands;
+import com.royalevolution.royalcommands.RoyalCore;
 import com.royalevolution.royalcommands.utils.Common;
 
 import net.md_5.bungee.api.ChatColor;
@@ -21,7 +21,7 @@ public class CommandFly extends PlayerCommand {
 
 	@Override
 	protected void run(Player sender, String[] args) {
-		final String prefix = RoyalCommands.getChatPrefix();
+		final String prefix = RoyalCore.getChatPrefix();
 
 		if (sender.hasPermission("rc.fly")) {
 			if (args.length == 0) { //no args. sender = target
@@ -35,7 +35,7 @@ public class CommandFly extends PlayerCommand {
 			} else if (args.length == 1) { //arg arg0 = target
 				if (sender.hasPermission("rc.fly.others")) {
 					final String targetName = args[0];
-					for (final Player player : RoyalCommands.getOnlinePlayers())
+					for (final Player player : RoyalCore.getOnlinePlayers())
 						if (ChatColor.stripColor(player.getDisplayName()).equals(targetName)) {
 							if (!player.getAllowFlight()) {
 								player.setAllowFlight(true);

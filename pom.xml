@@ -3,16 +3,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.royalevolution.royalcommands</groupId>
-  <artifactId>RoyalCommands</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>RoyalCore</artifactId>
+  <version>0.1.0</version>
   <packaging>jar</packaging>
 
-  <name>RoyalCommands</name>
+  <name>RoyalCore</name>
   <url>https://github.com/ssnd1/RoyalCommands</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <mainClass>com.royalevolution.royalcommands.RoyalCommands</mainClass>
+    <mainClass>com.royalevolution.royalcommands.RoyalCore</mainClass>
     <author>SSND</author>
   </properties>
 
@@ -20,7 +20,7 @@
     <dependency>
 		<groupId>org.spigotmc</groupId>
 		<artifactId>spigot-api</artifactId>
-		<version>1.14.2-R0.1-SNAPSHOT</version>
+		<version>1.14.3-R0.1-SNAPSHOT</version>
 		<scope>provided</scope>
 	</dependency>
     <dependency>

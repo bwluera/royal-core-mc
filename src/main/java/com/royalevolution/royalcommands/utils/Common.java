@@ -3,25 +3,19 @@ package com.royalevolution.royalcommands.utils;
 
 import java.lang.reflect.Field;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.PluginManager;
 
-import com.royalevolution.royalcommands.RoyalCommands;
+import com.royalevolution.royalcommands.RoyalCore;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -50,10 +44,10 @@ public class Common {
 	}
 
 	public static void log(String message) {
-		tell(Bukkit.getConsoleSender(), "[" + RoyalCommands.getInstance().getName() + "] " + message);
+		tell(Bukkit.getConsoleSender(), "[" + RoyalCore.getInstance().getName() + "] " + message);
 	}
 
-	public static void registerEvents(RoyalCommands plugin, Listener... listeners) {
+	public static void registerEvents(RoyalCore plugin, Listener... listeners) {
 		final PluginManager pm = plugin.getServer().getPluginManager();
 
 		for (final Listener lis : listeners)

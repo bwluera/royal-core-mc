@@ -7,7 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.royalevolution.royalcommands.RoyalCommands;
+import com.royalevolution.royalcommands.RoyalCore;
 import com.royalevolution.royalcommands.utils.Common;
 
 import net.md_5.bungee.api.ChatColor;
@@ -35,11 +35,11 @@ public class CommandClearInv extends Command {
 				Player target = Bukkit.getPlayer(args[0]);
 
 				if (target == null) {
-					Common.tell(sender, RoyalCommands.getChatPrefix() + "&cPlayer " + args[0] + " &ccould not be found.");
+					Common.tell(sender, RoyalCore.getChatPrefix() + "&cPlayer " + args[0] + " &ccould not be found.");
 				}
 
 				if (target != null) {
-					Common.tell(sender, RoyalCommands.getChatPrefix() + "&3" + args[0] + "&f's inventory has been cleared");
+					Common.tell(sender, RoyalCore.getChatPrefix() + "&3" + args[0] + "&f's inventory has been cleared");
 					target.getInventory().clear();
 				} 
 			}
@@ -59,20 +59,20 @@ public class CommandClearInv extends Command {
 			if (args.length == 0) {
 
 				player.getInventory().clear();
-				Common.tell(sender, RoyalCommands.getChatPrefix() + "&fYour inventory has been cleared.");
+				Common.tell(sender, RoyalCore.getChatPrefix() + "&fYour inventory has been cleared.");
 			} 
 
 			if (args.length == 1) {
 				if (args[0].equalsIgnoreCase("all")) {
 					if (player.hasPermission("rc.clear.all")) {
 
-						Common.tell(sender, RoyalCommands.getChatPrefix() + "&fEveryones inventory has been cleared");
+						Common.tell(sender, RoyalCore.getChatPrefix() + "&fEveryones inventory has been cleared");
 
 						for (Player all : Bukkit.getOnlinePlayers()) {
 
 							all.getInventory().clear();
 
-							Common.tell(all, RoyalCommands.getChatPrefix() + "&fYour inventory has been cleared by an admin");
+							Common.tell(all, RoyalCore.getChatPrefix() + "&fYour inventory has been cleared by an admin");
 						} 
 					} 
 
@@ -80,7 +80,7 @@ public class CommandClearInv extends Command {
 
 					if (!player.hasPermission("rc.clear.all")) {
 						
-						Common.tell(sender, RoyalCommands.getChatPrefix() + "&cYou don't have permission to do this!");
+						Common.tell(sender, RoyalCore.getChatPrefix() + "&cYou don't have permission to do this!");
 
 						return true;
 					} 
@@ -92,18 +92,18 @@ public class CommandClearInv extends Command {
 					Player target = Bukkit.getPlayer(args[0]);
 
 					if (target == null) {
-						Common.tell(sender, RoyalCommands.getChatPrefix() + "&cPlayer &4" + args[0] + " &ccould not be found.");
+						Common.tell(sender, RoyalCore.getChatPrefix() + "&cPlayer &4" + args[0] + " &ccould not be found.");
 					}
 
 					if (target != null) {
 						if (player.hasPermission("rc.clear.others")) {
 							target.getInventory().clear();
-							Common.tell(sender, RoyalCommands.getChatPrefix() + "&3" + args[0] + "&f's inventory has been cleared");
-							Common.tell(target, RoyalCommands.getChatPrefix() + "&fYour inventory has been cleared by an admin");
+							Common.tell(sender, RoyalCore.getChatPrefix() + "&3" + args[0] + "&f's inventory has been cleared");
+							Common.tell(target, RoyalCore.getChatPrefix() + "&fYour inventory has been cleared by an admin");
 							return true;
 						} 
 
-						Common.tell(sender, RoyalCommands.getChatPrefix() + "&cYou don't have permission to do this!");
+						Common.tell(sender, RoyalCore.getChatPrefix() + "&cYou don't have permission to do this!");
 					} 
 				} 
 			} 

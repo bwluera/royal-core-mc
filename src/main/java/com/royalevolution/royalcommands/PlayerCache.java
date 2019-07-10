@@ -24,14 +24,14 @@ public class PlayerCache {
             try {
                 cache.load(file);
             } catch (IOException | InvalidConfigurationException e) {
-                Common.log(RoyalCommands.getChatPrefix() + "FATAL: Failed to load 'playerCache.yml'!");
+                Common.log(RoyalCore.getChatPrefix() + "FATAL: Failed to load 'playerCache.yml'!");
                 e.printStackTrace();
             }
         } else {
-            RoyalCommands.getInstance().saveResource("playerCache.dat", false);
+            RoyalCore.getInstance().saveResource("playerCache.dat", false);
             cache = YamlConfiguration.loadConfiguration(file);
 
-            Common.log(RoyalCommands.getChatPrefix() + "File playerCache.dat successfully created.");
+            Common.log(RoyalCore.getChatPrefix() + "File playerCache.dat successfully created.");
         }
     }
 
@@ -65,12 +65,13 @@ public class PlayerCache {
         try {
             cache.load(file);
         } catch (IOException | InvalidConfigurationException e) {
-            Common.log(RoyalCommands.getChatPrefix() + "Exception occurred while reloading 'playerCache.dat'!");
+            Common.log(RoyalCore.getChatPrefix() + "Exception occurred while reloading 'playerCache.dat'!");
             e.printStackTrace();
         }
     }
 
     public void reloadCache() { // use this when only updating one players data. refer to RoyalCommands.updatePlayerCaches() to update all players data
+
         loadHomes();
     }
 
