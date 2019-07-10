@@ -6,6 +6,9 @@ import org.bukkit.Location;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +42,10 @@ public class PlayerCache {
 
     private HashMap<String, Location> homes = new HashMap();
 
+    private Inventory backpack;
+    private String backpackName;
+    private boolean viewingBackpack = false;
+
     public PlayerCache(UUID uuid) {
         this.uuid = uuid;
 
@@ -46,12 +53,13 @@ public class PlayerCache {
     }
 
     private void onLoad() { // main method to load all data from player cache
-
+        initializeBackpack();
     }
 
     public void save() { // main method to save all data to the player cache file
                         // WARNING: always use the save method before any load methods
         saveHomes();
+        saveBackpack();
 
         try {
             cache.save(file);
@@ -71,8 +79,8 @@ public class PlayerCache {
     }
 
     public void reloadCache() { // use this when only updating one players data. refer to RoyalCommands.updatePlayerCaches() to update all players data
-
         loadHomes();
+        loadBackpack();
     }
 
     // all sub-methods for saving / loading player data go in this section
@@ -107,9 +115,28 @@ public class PlayerCache {
 
     }
 
+    public void initializeBackpack() {
+        Player p = Bukkit.getPlayer(uuid);
+        backpackName = p.getName() + "'s Backpack";
+
+        backpack = Bukkit.createInventory(null, 54, backpackName);
+    }
+
+    public void saveBackpack() {
+        ItemStack[] contents = backpack.getContents();
+
+        cache.set(uuid + ".backpack", contents);
+    }
+
+    public void loadBackpack() {
+        ItemStack[] contents = ((List<ItemStack>) cache.get(uuid + ".backpack")).toArray(new ItemStack[0]);
+
+        backpack.setContents(contents);
+    }
+
     // All player data related methods go below here
 
-    public void delHome(String homeName) {
+    public void delHome(String homeName) { //TODO: implement this with /delhome command
         if (homeExists(homeName)) {
             cache.set(uuid + ".homes." + homeName, null);
             save();
@@ -124,6 +151,23 @@ public class PlayerCache {
     public HashMap getHomes() {
         return homes;
     }
+
+    public Inventory getBackpack() { return backpack; }
+
+    public String getBackpackName() {return backpackName; }
+
+    public boolean isViewingBackpack() { return viewingBackpack; }
+
+    public void setBackpackContents(ItemStack[] updatedContents) {
+        backpack.setContents(updatedContents);
+        save();
+    }
+
+    public void setViewingBackpack(boolean isViewing) {
+        this.viewingBackpack = isViewing;
+    }
+
+    // other various methods
 
     public boolean homeExists(String homeName) {
         return cache.contains(uuid + ".homes." + homeName);

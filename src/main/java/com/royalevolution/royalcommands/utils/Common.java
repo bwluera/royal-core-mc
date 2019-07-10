@@ -4,6 +4,7 @@ package com.royalevolution.royalcommands.utils;
 import java.lang.reflect.Field;
 import java.util.*;
 
+import com.royalevolution.royalcommands.PlayerCache;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -12,6 +13,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.PluginManager;
 
@@ -98,5 +101,43 @@ public class Common {
 		ArrayList<String> data = getPermissionData(permAttachments, permBase);
 
 		return data.get(i);
+	}
+
+	public static boolean inventoriesAreEqual(Inventory first, InventoryView view, Inventory backpack) {
+
+		Player player = (Player) view.getPlayer();
+		PlayerCache cache = RoyalCore.getCache(player);
+		String backpackName = cache.getBackpackName();
+
+		if(first == null && backpack == null)
+			return true;
+
+		if((first == null && backpack != null) || (first != null && backpack == null))
+			return false;
+
+		if(!view.getTitle().equals(backpackName))
+			return false;
+
+		//if(first.getType() != backpack.getType())
+			//return false;
+
+		ItemStack[] firstContents = first.getContents();
+		ItemStack[] secondContents = backpack.getContents();
+
+		if(firstContents.length != secondContents.length)
+			return false;
+
+		for(int i = 0; i < firstContents.length; i++) {
+			if(firstContents[i] == null && secondContents[i] == null)
+				continue;
+			else if(firstContents[i] == null && secondContents[i] != null)
+				return false;
+			else if(secondContents[i] == null && firstContents[i] != null)
+				return false;
+			else if(!firstContents[i].equals(secondContents[i]))
+				return false;
+		}
+
+		return true;
 	}
 }

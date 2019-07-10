@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.royalevolution.royalcommands.commands.*;
+import com.royalevolution.royalcommands.listeners.BackpackListener;
 import com.royalevolution.royalcommands.listeners.PlayerChatListener;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -40,11 +41,13 @@ public class RoyalCore extends JavaPlugin {
 				new CommandBroadcast(),
 				new CommandHome(),
 				new CommandSetHome(),
-				new CommandRC()
+				new CommandRC(),
+				new CommandBackpack()
 				);
 		Common.registerEvents(this, 
 				new JoinLeaveListener(),
-				new PlayerChatListener()
+				new PlayerChatListener(),
+				new BackpackListener()
 				);
 
 		//adding custom recipes
