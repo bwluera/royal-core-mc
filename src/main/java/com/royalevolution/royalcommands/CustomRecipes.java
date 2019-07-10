@@ -8,6 +8,7 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
 
+
 public class CustomRecipes {
 	public static void addCustomRecipes() {
 		ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET);
@@ -21,7 +22,7 @@ public class CustomRecipes {
 				, helmet, "test_helmet");
 	}
 
-	private static void addRecipe (Material m1, Material m2, Material m3, 
+	private static void addRecipe (Material m1, Material m2, Material m3,
 								   Material m4, Material m5, Material m6,
 								   Material m7, Material m8, Material m9,
 								     ItemStack outcome, String outcomeID) {
