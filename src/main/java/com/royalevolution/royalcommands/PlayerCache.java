@@ -52,8 +52,25 @@ public class PlayerCache {
         onLoad();
     }
 
-    private void onLoad() { // main method to load all data from player cache
+    private void onLoad() { // main method to load all data from playerCache.dat
+
+        if (cache.get(uuid + ".homes") != null) {
+            loadHomes();
+        }
+        else {
+            cache.createSection(uuid + ".homes");
+        }
+
         initializeBackpack();
+
+        if (cache.get(uuid + ".backpack") != null) {
+            loadBackpack();
+        }
+        else {
+            cache.createSection(uuid +".backpack");
+        }
+
+
     }
 
     public void save() { // main method to save all data to the player cache file
@@ -107,7 +124,7 @@ public class PlayerCache {
 
     public void loadHomes() {
         homes.clear(); // we need to clear the homes before adding all the ones from the config (would add duplicates)
-                    // therefore, we should always use the save() method before using this
+                    // therefore, we should always use the save() method before using this (unless when in onLoad method)
         for (String homeName : cache.getConfigurationSection(uuid + ".homes").getKeys(false)) {
             Location location = getHomeLocation(homeName);
             homes.put(homeName, location);

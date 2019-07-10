@@ -33,6 +33,7 @@ public class Common {
 		sender.sendMessage(colorize(message));
 	}
 
+
 	public static boolean invCanFit(Inventory inv) {
 		return inv.getContents().length < 36;
 	}

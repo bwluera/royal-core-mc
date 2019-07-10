@@ -44,6 +44,7 @@ public class RoyalCore extends JavaPlugin {
 				new CommandRC(),
 				new CommandBackpack()
 				);
+
 		Common.registerEvents(this, 
 				new JoinLeaveListener(),
 				new PlayerChatListener(),
